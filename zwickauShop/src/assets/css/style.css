@@ -1,15 +1,13 @@
-﻿@import url(fontiran.css); /* لینک فایلی که وظیفه بارگذاری فونت ها را برعهده دارد */
+﻿@import url(./font.css); /* لینک فایلی که وظیفه بارگذاری فونت ها را برعهده دارد */
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
 
 * {
-  font-family: IRANSansXFaNum, "Open Sans", sans-serif !important;
   box-sizing: border-box !important;
   padding: 0;
   margin: 0;
 }
 
 body {
-  font-family: IRANSansXFaNum, "Open Sans", sans-serif !important;
   box-sizing: border-box !important;
   direction: rtl;
   background-color: #cdcdcd;

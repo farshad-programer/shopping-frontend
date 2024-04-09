@@ -32,3 +32,20 @@ This set of fonts are used in this project under the license: (.....)
   src: url("../fonts/woff/IRANSansXFaNum-Regular.woff") format("woff"),
     url("../fonts/woff2/IRANSansXFaNum-Regular.woff2") format("woff2");
 }
+@font-face {
+  font-family: "GreatVibes-Regular";
+  src: url("../fonts/font/GreatVibes-Regular.ttf");
+}
+@font-face {
+  font-family: "DancingScript-Regular";
+  src: url("../fonts/font/DancingScript-Regular.ttf");
+}
+@font-face {
+  font-family: "SourceSansPro-Regular";
+  src: url("../fonts/font/SourceSansPro-Regular.ttf");
+}
+@layer components {
+  .errorInfo {
+    @apply text-red-600 w-7  absolute top-1/2 -translate-y-1/2 right-2 drop-shadow-[0_5px_6px_rgba(220,38,38,0.65)];
+  }
+}

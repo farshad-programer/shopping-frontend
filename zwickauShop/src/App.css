@@ -1,4 +1,4 @@
-@import url("https://cdn.syncfusion.com/ej2/material.css");
+@import url("../node_modules/@syncfusion/ej2/material3.css");
 
 body {
   direction: rtl;

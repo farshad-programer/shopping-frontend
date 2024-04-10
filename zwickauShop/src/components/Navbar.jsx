@@ -7,10 +7,10 @@ import { BsChatLeft } from "react-icons/bs";
 import { RiNotification3Line } from "react-icons/ri";
 import avatar from "../data/avatar.jpg";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import Cart from "./Cart";
-import Chat from "./Chat";
-import Notification from "./Notification";
-import UserProfile from "./UserProfile";
+// import Cart from "./Cart";
+// import Chat from "./Chat";
+// import Notification from "./Notification";
+// import UserProfile from "./UserProfile";
 
 const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
   <TooltipComponent content={title} position="BottomLeft">
@@ -22,7 +22,7 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
     >
       <span
         style={{ background: dotColor }}
-        className="absolute inline-flex rounded-full h-2 w-2 right-2 top-2"
+        className="absolute inline-flex  rounded-full h-2 w-2 right-2 top-2"
       />
       {icon}
     </button>

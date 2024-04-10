@@ -2,9 +2,10 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout/layout";
 
 import "./App.css";
-import ContentAdmin from "./pages/pageAdmin/contentAdmin";
+
 import Login from "./pages/login";
 import Register from "./pages/register";
+import ContentAdmin from "./pages/pageAdmin/contentAdmin";
 function App() {
   return (
     <Routes>

@@ -1,7 +1,7 @@
 @import url("../node_modules/@syncfusion/ej2/material3.css");
 
 body {
-  direction: rtl;
+  direction: ltr;
 }
 
 .sidebar {

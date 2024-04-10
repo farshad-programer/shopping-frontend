@@ -1,14 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  // important:"#root",
   darkMode: "class",
   theme: {
     fontFamily: {
       display: ["Open Sans", "sans-serif"],
-      body: ["Open Sans", "sans-serif"],
+      
       eng2: ["SourceSansPro-Regular", "SourceSansPro-Regular"],
       eng3: ["DancingScript-Regular", "DancingScript-Regular"],
       eng1: ["GreatVibes", "cursive"],
+      Sans: ["Open Sans", "sans-serif"],
+      Playfair: ["Playfair Display", "serif"],
+      Roboto: ["Roboto", "sans-serif"],
     },
     extend: {
       fontSize: {

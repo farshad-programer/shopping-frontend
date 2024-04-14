@@ -1,14 +1,33 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { SlPuzzle } from "react-icons/sl";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import { MdOutlineCancel } from "react-icons/md";
 import { links } from "../data/dummy";
 import { useStateContext } from "../contexts/ContextProvider";
+import { useGetCategorysQuery } from "../features/categoryApiSlice ";
+import CategoryMenu from "./CategoryMenu";
 
-const Sidebar = () => {
+const SidebarCustomer = () => {
+  const {
+    data: categorys,
+    isLoading,
+    isSuccess,
+    isError,
+    error,
+  } = useGetCategorysQuery("categorysList", {
+    pollingInterval: 15000,
+    refetchOnFocus: true,
+    refetchOnMountOrArgChange: true,
+  });
   const { activeMenu, setActiveMenu, screenSize, currentColor } =
     useStateContext();
+  if (isSuccess) {
+    const { ids } = categorys;
+    const tableContent = ids?.length
+    ? ids.map(categoryId => <CategoryMenu key={categoryId} categoryId={categoryId} />)
+    : null
+  }
 
   const handleCloseSidebaar = useMemo(
     () => () => {
@@ -89,4 +108,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default SidebarCustomer;

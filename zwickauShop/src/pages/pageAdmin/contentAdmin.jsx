@@ -30,8 +30,27 @@ import { useStateContext } from "../../contexts/ContextProvider";
 import ThemeSettings from "../../components/ThemeSettings";
 import Cartcomponent from "../../components/cart";
 import CardComponent from "../../components/cart";
+import { useGetProductsQuery } from "../../features/productApiSlice";
+import { useEffect } from "react";
 function ContentAdmin() {
   //   loadCldr(numberingSystems, gregorian, numbers, timeZoneNames, weekData);
+  const {
+    data: users,
+    isLoading,
+    isSuccess,
+    isError,
+    error,
+  } = useGetProductsQuery("productsList", {
+    pollingInterval: 60000,
+    refetchOnFocus: true,
+    refetchOnMountOrArgChange: true,
+  });
+  useEffect(() => {
+    if  (isSuccess) {
+      console.log(users);
+    }
+    
+  }, [users]);
   const {
     activeMenu,
     themeSettings,
@@ -40,6 +59,7 @@ function ContentAdmin() {
     currentMode,
     isClicked,
   } = useStateContext();
+  
 
   return (
     <div className={currentMode === "Dark" ? "dark" : ""}>

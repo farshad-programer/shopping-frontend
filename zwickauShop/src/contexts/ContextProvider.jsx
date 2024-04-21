@@ -16,6 +16,15 @@ export const ContextProvider = ({ children }) => {
   const [currentMode, setCurrentMode] = useState("Dark");
   const [themeSettings, setThemeSettings] = useState(false);
 
+  const [cartItem, setCartItem] = useState([]);
+  const addToCart = (itemId) => {
+    if (!cartItem?.find((item) => item?._id === itemId)) {
+      setCartItem([...cartItem, { id: itemId, count: 1 }]);
+    }else{
+      setCartItem(cartItem.map((item)=>{}))
+    }
+  };
+
   const handleClick = (clicked) => {
     setIsCliked({ ...initialState, [clicked]: !isClicked[clicked] });
   };

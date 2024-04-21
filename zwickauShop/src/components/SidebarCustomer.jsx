@@ -5,28 +5,28 @@ import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import { MdOutlineCancel } from "react-icons/md";
 import { links } from "../data/dummy";
 import { useStateContext } from "../contexts/ContextProvider";
-import { useGetCategorysQuery } from "../features/categoryApiSlice ";
-import CategoryMenu from "./CategoryMenu";
+import {
+  selectAllCategorys,
+  useGetCategorysQuery,
+} from "../features/categoryApiSlice ";
+import { TbCategoryPlus } from "react-icons/tb";
+
+import { useSelector } from "react-redux";
+import CategoryList from "./CategoryList";
 
 const SidebarCustomer = () => {
+  const { activeMenu, setActiveMenu, screenSize, currentColor } =
+    useStateContext();
   const {
     data: categorys,
     isLoading,
     isSuccess,
     isError,
     error,
-  } = useGetCategorysQuery("categorysList", {
-    pollingInterval: 15000,
-    refetchOnFocus: true,
-    refetchOnMountOrArgChange: true,
-  });
-  const { activeMenu, setActiveMenu, screenSize, currentColor } =
-    useStateContext();
+  } = useGetCategorysQuery();
+  let category = useSelector((state) => selectAllCategorys(state, categorys));
   if (isSuccess) {
-    const { ids } = categorys;
-    const tableContent = ids?.length
-    ? ids.map(categoryId => <CategoryMenu key={categoryId} categoryId={categoryId} />)
-    : null
+    let { ids } = categorys;
   }
 
   const handleCloseSidebaar = useMemo(
@@ -44,10 +44,10 @@ const SidebarCustomer = () => {
     "flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-light-gray text-md m-2";
 
   return (
-    <div className="ml-3 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10">
+    <div className="ml-3 h-screen scroll-m-11 overflow-auto   pb-10 ">
       {activeMenu && (
         <>
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center hover:overflow-hidden">
             <Link
               to="/"
               onClick={handleCloseSidebaar}
@@ -65,7 +65,7 @@ const SidebarCustomer = () => {
             </Link>
             <TooltipComponent
               enableRtl={true}
-              content="بستن منو"
+              content="close"
               position="BottomCenter"
             >
               <button
@@ -73,13 +73,47 @@ const SidebarCustomer = () => {
                 onClick={() => {
                   setActiveMenu((prev) => !prev);
                 }}
-                className="text-xl rounded-full p-1 hover:bg-light-gray dark:hover:bg-gray-500 mt-4 mr-4 block dark:text-gray-50 lg:hidden"
+                className="text-2xl  rounded-full p-1 hover:bg-light-gray dark:hover:bg-gray-500 mt-6 mr-4 block dark:text-gray-50 lg:hidden"
               >
-                <MdOutlineCancel />
+                <MdOutlineCancel className="text-4xl" />
               </button>
             </TooltipComponent>
           </div>
           <div className="mt-10">
+            <div>
+              <p className="text-gray-400 m-3 mt-4">Category</p>
+              <NavLink
+                to={`/`}
+                onClick={handleCloseSidebaar}
+                style={({ isActive }) => ({
+                  backgroundColor: isActive ? currentColor : "",
+                })}
+                className={({ isActive }) =>
+                  isActive ? activeLink : normalLink
+                }
+              >
+                <TbCategoryPlus className="text-2xl" />
+                <span className="text-base ">all product</span>
+              </NavLink>
+              {category.map((link) => (
+                <NavLink
+                  to={`category/${link._id}`}
+                  key={link.id}
+                  onClick={handleCloseSidebaar}
+                  style={({ isActive }) => ({
+                    backgroundColor: isActive ? currentColor : "",
+                  })}
+                  className={({ isActive }) =>
+                    isActive ? activeLink : normalLink
+                  }
+                >
+                  <TbCategoryPlus className="text-2xl" />
+                  <span className="text-base ">{link.name}</span>
+                </NavLink>
+              ))}
+            </div>
+          </div>
+          <div>
             {links.map((item) => (
               <div key={item.title}>
                 <p className="text-gray-400 m-3 mt-4">{item.title}</p>

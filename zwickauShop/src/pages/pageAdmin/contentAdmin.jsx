@@ -28,29 +28,13 @@ import { useStateContext } from "../../contexts/ContextProvider";
 // import Pyramid from "./pages/Charts/Pyramid";
 // import Stacked from "./pages/Charts/Stacked";
 import ThemeSettings from "../../components/ThemeSettings";
-import Cartcomponent from "../../components/cart";
-import CardComponent from "../../components/cart";
+
 import { useGetProductsQuery } from "../../features/productApiSlice";
 import { useEffect } from "react";
+import Ecommerce from "../../components/Ecommerce";
 function ContentAdmin() {
   //   loadCldr(numberingSystems, gregorian, numbers, timeZoneNames, weekData);
-  const {
-    data: users,
-    isLoading,
-    isSuccess,
-    isError,
-    error,
-  } = useGetProductsQuery("productsList", {
-    pollingInterval: 60000,
-    refetchOnFocus: true,
-    refetchOnMountOrArgChange: true,
-  });
-  useEffect(() => {
-    if  (isSuccess) {
-      console.log(users);
-    }
-    
-  }, [users]);
+
   const {
     activeMenu,
     themeSettings,
@@ -59,7 +43,6 @@ function ContentAdmin() {
     currentMode,
     isClicked,
   } = useStateContext();
-  
 
   return (
     <div className={currentMode === "Dark" ? "dark" : ""}>
@@ -100,12 +83,11 @@ function ContentAdmin() {
             <Navbar />
           </div>
 
-          {/* <div>
+          <div>
               <Routes>
                 
-                <Route path="/" element={<Ecommerce />} />
-                <Route path="/ecommerce" element={<Ecommerce />} />
-                <Route path="/orders" element={<Orders />} />
+                
+                {/* <Route path="/orders" element={<Orders />} />
                 <Route path="/employees" element={<Employees />} />
                 <Route path="/customers" element={<Customers />} />
                 <Route path="/calendar" element={<Calendar />} />
@@ -119,14 +101,14 @@ function ContentAdmin() {
                 <Route path="/financial" element={<Financial />} />
                 <Route path="color-mapping" element={<ColorMapping />} />
                 <Route path="/pyramid" element={<Pyramid />} />
-                <Route path="/stacked" element={<Stacked />} />
+                <Route path="/stacked" element={<Stacked />} /> */}
               </Routes>
-            </div> */}
+            </div> 
           <div
             className="w-full h-full flex justify-between items-center 
         "
           >
-            <CardComponent />
+            <Ecommerce />
           </div>
         </div>
       </div>

@@ -1,15 +1,14 @@
-﻿@import url(./font.css); /* لینک فایلی که وظیفه بارگذاری فونت ها را برعهده دارد */
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
+﻿@import url("./font.css");
+@import url("./card.css");
 
 * {
-  box-sizing: border-box ;
+  box-sizing: border-box;
   padding: 0;
   margin: 0;
-  
 }
 
 body {
-  box-sizing: border-box ;
+  box-sizing: border-box;
   direction: ltr;
   background-color: #cdcdcd;
   margin: 0;

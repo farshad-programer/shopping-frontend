@@ -6,7 +6,7 @@ import {
   selectProductIds,
   useGetProductsQuery,
 } from "../features/productApiSlice";
-import ProductCart from "./selectCartById";
+import ProductCart from "./SelectCartById";
 import CartComponent from "./CartComponent";
 import { useStateContext } from "../contexts/ContextProvider";
 

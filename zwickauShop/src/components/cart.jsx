@@ -3,20 +3,46 @@ import { MdOutlineCancel } from "react-icons/md";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 
 import { useStateContext } from "../contexts/ContextProvider";
-import { cartData } from "../data/dummy";
 import Button from "./Button";
 import useClickOutside from "../utilities/useClickOutside";
 import { useRef } from "react";
+import {
+  selectAllProducts,
+  useGetProductsQuery,
+} from "../features/productApiSlice";
 
-const Cart = () => {
-  const { currentColor, handleClick } = useStateContext();
+import { useSelector } from "react-redux";
+import CartBasketComponent from "./CartBasketComponent";
 
+const Cartm = () => {
   const cartRef = useRef(null);
 
   useClickOutside(cartRef, () => {
     handleClick("cart");
   });
+  const {
+    currentColor,
+    handleClick,
+    addToCart,
+    removeFromCart,
+    setCartItems,
+    cartItems,
+    removeAllFromCart,
+  } = useStateContext();
 
+  const { data, isLoading, isSuccess, isError, error } = useGetProductsQuery();
+  const products = useSelector((state) => selectAllProducts(state));
+
+  let content;
+  if (isSuccess) {
+    content = products.map((product) =>
+      cartItems.some((i) => i?.id === product?.id) ? (
+        <CartBasketComponent key={product?.id} productId={product?.id} />
+      ) : null
+    );
+  }
+
+  // <CartComponent key={productId} productId={productId} />
   return (
     <div className="bg-half-transparent w-full fixed z-20 top-0 right-0 ">
       <div
@@ -26,42 +52,15 @@ const Cart = () => {
         <div className="flex justify-between items-center">
           <p className="font-semibold text-lg">سبد خرید</p>
           <Button
-            icon={<MdOutlineCancel />}
+            text={<MdOutlineCancel />}
             color="rgb(153, 171, 180)"
             bgHoverColor="light-gray"
             size="2xl"
             borderRadius="50%"
+            onClick={() => handleClick("cart")}
           />
         </div>
-        {cartData?.map((item, index) => (
-          <div key={index}>
-            <div>
-              <div className="flex items-center   leading-8 gap-5 border-b-1 border-color dark:border-gray-600 p-4">
-                <img className="rounded-lg h-80 w-24" src={item.image} alt="" />
-                <div>
-                  <p className="font-semibold ">{item.name}</p>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm font-semibold">
-                    {item.category}
-                  </p>
-                  <div className="flex gap-4 mt-2 items-center">
-                    <p className="font-semibold text-lg">{item.price}</p>
-                    <div className="flex items-center border-1 border-r-0 border-color rounded">
-                      <p className="p-2 border-r-1 dark:border-gray-600 border-color text-red-600 ">
-                        <AiOutlineMinus />
-                      </p>
-                      <p className="p-2 border-r-1 border-color dark:border-gray-600 text-green-600">
-                        0
-                      </p>
-                      <p className="p-2 border-r-1 border-color dark:border-gray-600 text-green-600">
-                        <AiOutlinePlus />
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
+        {content}
         <div className="mt-3 mb-3">
           <div className="flex justify-between items-center">
             <p className="text-gray-500 dark:text-gray-200">
@@ -88,4 +87,12 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default Cartm;
+{
+  /* <button
+                  onClick={() => removeAllFromCart(product.id)}
+                  className="  rounded-md px-2 py-1 bg-yellow-500/70"
+                >
+                  <BsFillTrash3Fill className="text-white  text-md" />
+                </button> */
+}

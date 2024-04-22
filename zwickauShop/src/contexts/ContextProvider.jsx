@@ -15,16 +15,37 @@ export const ContextProvider = ({ children }) => {
   const [currentColor, setCurrentColor] = useState("#03C9D7");
   const [currentMode, setCurrentMode] = useState("Dark");
   const [themeSettings, setThemeSettings] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
 
-  const [cartItem, setCartItem] = useState([]);
   const addToCart = (itemId) => {
-    if (!cartItem?.find((item) => item?._id === itemId)) {
-      setCartItem([...cartItem, { id: itemId, count: 1 }]);
-    }else{
-      setCartItem(cartItem.map((item)=>{}))
-    }
+    if (!cartItems?.find((item) => item.id === itemId))
+      setCartItems([...cartItems, { id: itemId, count: 1 }]);
+    else
+      setCartItems(
+        cartItems.map((item) => {
+          if (item.id === itemId) return { ...item, count: item.count + 1 };
+          else return item;
+        })
+      );
+    console.log(cartItems);
+  };
+  const removeAllFromCart = (itemId) => {
+    setCartItems(
+      cartItems.filter((item) => {
+        return item.id !== itemId || item.count !== 0;
+      })
+    );
   };
 
+  const removeFromCart = (itemId) => {
+    setCartItems(
+      cartItems.map((i) => {
+        if (i.id === itemId)
+          return { ...i, count: i.count === 0 ? 0 : i.count - 1 };
+        else return i;
+      })
+    );
+  };
   const handleClick = (clicked) => {
     setIsCliked({ ...initialState, [clicked]: !isClicked[clicked] });
   };
@@ -59,6 +80,11 @@ export const ContextProvider = ({ children }) => {
         setMode,
         themeSettings,
         setThemeSettings,
+        addToCart,
+        removeFromCart,
+        setCartItems,
+        cartItems,
+        removeAllFromCart,
       }}
     >
       {children}

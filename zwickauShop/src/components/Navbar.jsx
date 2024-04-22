@@ -7,7 +7,8 @@ import { BsChatLeft } from "react-icons/bs";
 import { RiNotification3Line } from "react-icons/ri";
 import avatar from "../data/avatar.jpg";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import Cart from "./Cart";
+import Cartm from "./Cart";
+
 // import Cart from "./Cart";
 // import Chat from "./Chat";
 // import Notification from "./Notification";
@@ -57,7 +58,7 @@ const Navbar = () => {
   }, [screenSize]);
 
   return (
-    <div className="flex dark:shadow-gray-800 shadow-sm justify-between p-2 shadow-gray-200 relative ">
+    <div className="flex dark:shadow-gray-800 shadow-sm  justify-between p-2 shadow-gray-200 relative ">
       <NavButton
         title="منو"
         customFunc={() => setActiveMenu((prev) => !prev)}
@@ -102,7 +103,7 @@ const Navbar = () => {
             <MdKeyboardArrowDown className="text-gray-400 text-14" />
           </div>
         </TooltipComponent>
-        {isClicked.cart && <Cart />}
+        {isClicked.cart && <Cartm />}
         {isClicked.chat && <Chat />}
         {isClicked.notification && <Notification />}
         {isClicked.userProfile && <UserProfile />}

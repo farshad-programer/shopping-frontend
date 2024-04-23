@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { MdOutlineCancel } from "react-icons/md";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 
@@ -20,21 +20,32 @@ const Cartm = () => {
   useClickOutside(cartRef, () => {
     handleClick("cart");
   });
-  const { currentColor, handleClick, cartItems } = useStateContext();
+  const {
+    currentColor,
+    handleClick,
+    cartItems,
+    totalPriceShop,
+    setTotalPriceShop,
+  } = useStateContext();
 
   const { isSuccess, data: products } = useGetProductsQuery();
 
   let content;
+  let totalPrice;
   if (isSuccess) {
-    const { ids } = products;
-
     const cartItemsIds = cartItems.map((item) => item.id);
 
-    const matchingIds = ids.filter((productId) =>
-      cartItemsIds.includes(productId)
-    );
-console.log('matchingIds', matchingIds)
-    content = matchingIds.map((productId) => (
+    useEffect(() => {
+      let totalPrice = 0;
+      for (let i = 0; i < cartItems.length; i++) {
+        const totalPriceProduct =
+          products.entities[cartItems[i].id].price * cartItems[i].count;
+        totalPrice += totalPriceProduct;
+      }
+      setTotalPriceShop(totalPrice);
+    }, [cartItems]);
+
+    content = cartItemsIds.map((productId) => (
       <CartBasketComponent key={productId} productId={productId} />
     ));
   }
@@ -63,7 +74,7 @@ console.log('matchingIds', matchingIds)
             <p className="text-gray-500 dark:text-gray-200">
               جمع بدون هزینه حمل
             </p>
-            <p className="font-semibold">$890</p>
+            <p className="font-semibold">{`${totalPriceShop} $`}</p>
           </div>
           <div className="flex justify-between items-center mt-3">
             <p className="text-gray-500 dark:text-gray-200">جمع کل</p>
@@ -94,3 +105,21 @@ export default Cartm;
                 </button> */
 }
 // دو آرایه اولیه
+// if (isSuccess) {
+//   const cartItemsIds = cartItems.map((item) => item.id);
+//   const [totalPriceShop, setTotalPriceShop] = useState(0);
+
+//   useEffect(() => {
+//     let totalPrice = 0;
+//     for (let i = 0; i < cartItems.length; i++) {
+//       const totalPriceProduct =
+//         products.entities[cartItems[i].id].price * cartItems[i].count;
+//       totalPrice += totalPriceProduct;
+//     }
+//     setTotalPriceShop(totalPrice);
+//   }, [cartItems]);
+
+//   content = cartItemsIds.map((productId) => (
+//     <CartBasketComponent key={productId} productId={productId} />
+//   ));
+// }

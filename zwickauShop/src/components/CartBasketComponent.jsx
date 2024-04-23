@@ -5,10 +5,18 @@ import image from "../data/product1.jpg";
 import { BsFillTrash3Fill } from "react-icons/bs";
 
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
-import React from "react";
+import React, { useEffect } from "react";
 const CartBasketComponent = ({ productId }) => {
-  const { addToCart, removeFromCart, cartItems,removeAllFromCart } = useStateContext();
+  const { addToCart, removeFromCart, cartItems, removeAllFromCart } =
+    useStateContext();
   const product = useSelector((state) => selectProductById(state, productId));
+  useEffect(() => {
+    const matchingCartItems = cartItems.filter(
+      (cartItem) => cartItem?.id === productId
+    );
+    const totalPriceProductCount = matchingCartItems[0]?.count * product?.price;
+    console.log("totalPrice", totalPriceProductCount);
+  }, [cartItems]);
 
   return (
     <div>

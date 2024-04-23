@@ -16,6 +16,7 @@ export const ContextProvider = ({ children }) => {
   const [currentMode, setCurrentMode] = useState("Dark");
   const [themeSettings, setThemeSettings] = useState(false);
   const [cartItems, setCartItems] = useState([]);
+  const [totalPriceShop, setTotalPriceShop] = useState(0);
 
   const addToCart = (itemId) => {
     if (!cartItems?.find((item) => item.id === itemId))
@@ -85,6 +86,8 @@ export const ContextProvider = ({ children }) => {
         setCartItems,
         cartItems,
         removeAllFromCart,
+        totalPriceShop,
+        setTotalPriceShop,
       }}
     >
       {children}

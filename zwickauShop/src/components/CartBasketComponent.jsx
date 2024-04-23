@@ -2,16 +2,12 @@ import { useSelector } from "react-redux";
 import { selectProductById } from "../features/productApiSlice";
 import { useStateContext } from "../contexts/ContextProvider";
 import image from "../data/product1.jpg";
-import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
-const CartBasketComponent = (productId) => {
-  const {
-    addToCart,
-    removeFromCart,
-    setCartItems,
-    cartItems,
-    removeAllFromCart,
-  } = useStateContext();
+import { BsFillTrash3Fill } from "react-icons/bs";
 
+import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
+import React from "react";
+const CartBasketComponent = ({ productId }) => {
+  const { addToCart, removeFromCart, cartItems,removeAllFromCart } = useStateContext();
   const product = useSelector((state) => selectProductById(state, productId));
 
   return (
@@ -21,20 +17,29 @@ const CartBasketComponent = (productId) => {
         <div>
           <p className="font-semibold ">{product?.name}</p>
           <p className="text-gray-600 dark:text-gray-400 text-sm font-semibold">
-            {product?.category}
+            {product?.category.name}
           </p>
           <div className="flex gap-4 mt-2 items-center">
             <p className="font-semibold text-lg">11</p>
             <div className="flex items-center border-1 border-r-0 border-color rounded">
-              <p className="p-2 border-r-1 dark:border-gray-600 border-color text-red-600 ">
-                <AiOutlineMinus />
-              </p>
+              <button className="p-2 border-r-1 dark:border-gray-600 border-color text-red-600 ">
+                <AiOutlineMinus onClick={() => removeFromCart(product?.id)} />
+              </button>
               <p className="p-2 border-r-1 border-color dark:border-gray-600 text-green-600">
-                0
+                {cartItems?.filter((row) => row.id === product.id)[0]?.count}
               </p>
-              <p className="p-2 border-r-1 border-color dark:border-gray-600 text-green-600">
+              <button
+                onClick={() => addToCart(product.id)}
+                className="p-2 border-r-1 border-color dark:border-gray-600 text-green-600"
+              >
                 <AiOutlinePlus />
-              </p>
+              </button>
+              <button
+                onClick={() => removeAllFromCart(product?.id)}
+                className="p-2 border-r-1 border-color dark:border-gray-600 text-yellow-600"
+              >
+                <BsFillTrash3Fill />
+              </button>
             </div>
           </div>
         </div>

@@ -20,26 +20,23 @@ const Cartm = () => {
   useClickOutside(cartRef, () => {
     handleClick("cart");
   });
-  const {
-    currentColor,
-    handleClick,
-    addToCart,
-    removeFromCart,
-    setCartItems,
-    cartItems,
-    removeAllFromCart,
-  } = useStateContext();
+  const { currentColor, handleClick, cartItems } = useStateContext();
 
-  const { data, isLoading, isSuccess, isError, error } = useGetProductsQuery();
-  const products = useSelector((state) => selectAllProducts(state));
+  const { isSuccess, data: products } = useGetProductsQuery();
 
   let content;
   if (isSuccess) {
-    content = products.map((product) =>
-      cartItems.some((i) => i?.id === product?.id) ? (
-        <CartBasketComponent key={product?.id} productId={product?.id} />
-      ) : null
+    const { ids } = products;
+
+    const cartItemsIds = cartItems.map((item) => item.id);
+
+    const matchingIds = ids.filter((productId) =>
+      cartItemsIds.includes(productId)
     );
+console.log('matchingIds', matchingIds)
+    content = matchingIds.map((productId) => (
+      <CartBasketComponent key={productId} productId={productId} />
+    ));
   }
 
   // <CartComponent key={productId} productId={productId} />
@@ -96,3 +93,4 @@ export default Cartm;
                   <BsFillTrash3Fill className="text-white  text-md" />
                 </button> */
 }
+// دو آرایه اولیه

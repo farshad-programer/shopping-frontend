@@ -11,15 +11,10 @@ import { useNavigate } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa";
-import { BsFillTrash3Fill } from "react-icons/bs";
-function CartComponent({ productId }) {
-  const {
-    addToCart,
-    removeFromCart,
-    setCartItems,
-    cartItems,
-    removeAllFromCart,
-  } = useStateContext();
+import React from "react";
+
+const CartComponent = ({ productId }) => {
+  const { addToCart, removeFromCart, cartItems } = useStateContext();
   const product = useSelector((state) => selectProductById(state, productId));
   const navigate = useNavigate();
   const handleEdit = () => navigate(`/${productId}`);
@@ -94,7 +89,6 @@ function CartComponent({ productId }) {
                     <FaMinus className="text-white  text-md" />
                   </button>
                 </div>
-                
               </div>
             )}
           </div>
@@ -110,6 +104,6 @@ function CartComponent({ productId }) {
       </div>
     </div>
   );
-}
+};
 
 export default CartComponent;

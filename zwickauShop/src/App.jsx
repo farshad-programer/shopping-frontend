@@ -2,8 +2,8 @@ import { Route, Routes } from "react-router-dom";
 
 import "./App.css";
 
-import Login from "./pages/login";
-import Register from "./pages/register";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 import ContentAdmin from "./pages/pageAdmin/contentAdmin";
 import ContentCustomer from "./components/Layout/layout";
 import Ecommerce from "./components/Ecommerce";

@@ -32,7 +32,7 @@ export const ContextProvider = ({ children }) => {
   const removeAllFromCart = (itemId) => {
     setCartItems(
       cartItems.filter((item) => {
-        return item.id !== itemId || item.count !== 0;
+        return item.id !== itemId;
       })
     );
   };

@@ -34,8 +34,9 @@ import SidebarCustomer from "../SidebarCustomer";
 import Ecommerce from "../Ecommerce";
 import ProductSingel from "../ProductSingel";
 import { Outlet } from "react-router-dom";
+import React from "react";
 
-function Layout() {
+export const Layout = () => {
   //   loadCldr(numberingSystems, gregorian, numbers, timeZoneNames, weekData);
 
   const {
@@ -78,6 +79,6 @@ function Layout() {
       </div>
     </div>
   );
-}
+};
 
 export default Layout;

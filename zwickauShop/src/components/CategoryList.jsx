@@ -6,8 +6,9 @@ import { selectCategoryById } from "../features/categoryApiSlice ";
 import { useSelector } from "react-redux";
 import CartComponent from "./CartComponent";
 import { useStateContext } from "../contexts/ContextProvider";
+import React from "react";
 
-function CategoryList() {
+const CategoryList = () => {
   const { categoryId } = useParams();
   const category = useSelector((state) =>
     selectCategoryById(state, categoryId)
@@ -43,6 +44,6 @@ function CategoryList() {
       </div>
     </div>
   );
-}
+};
 
 export default CategoryList;

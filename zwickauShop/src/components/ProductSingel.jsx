@@ -1,7 +1,9 @@
 import { useSelector } from "react-redux";
 import { selectProductById } from "../features/productApiSlice";
 import { useParams } from "react-router-dom";
-function ProductSingel() {
+import React from "react";
+
+const ProductSingel = () => {
   const { postId } = useParams();
 
   const post = useSelector((state) => selectProductById(state, Number(postId)));
@@ -16,6 +18,6 @@ function ProductSingel() {
       </div>
     </div>
   );
-}
+};
 
 export default ProductSingel;

@@ -2,8 +2,9 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { selectProductById } from "../features/productApiSlice";
 import { Link } from "react-router-dom";
+import React from "react";
 
-function ProductCart({ productId }) {
+const ProductCart = ({ productId }) => {
   const product = useSelector((state) => selectProductById(state, productId));
   const navigate = useNavigate();
   const handleEdit = () => navigate(`/${productId}`);
@@ -15,6 +16,6 @@ function ProductCart({ productId }) {
     </div>
   );
   return <ul>{renderedProducts}</ul>;
-}
+};
 
 export default ProductCart;

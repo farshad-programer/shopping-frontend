@@ -5,8 +5,9 @@ import image from "../data/product1.jpg";
 import { BsFillTrash3Fill } from "react-icons/bs";
 
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 const CartBasketComponent = ({ productId }) => {
+  const [totalPrice, setTotalPrice] = useState(0);
   const { addToCart, removeFromCart, cartItems, removeAllFromCart } =
     useStateContext();
   const product = useSelector((state) => selectProductById(state, productId));
@@ -14,8 +15,7 @@ const CartBasketComponent = ({ productId }) => {
     const matchingCartItems = cartItems.filter(
       (cartItem) => cartItem?.id === productId
     );
-    const totalPriceProductCount = matchingCartItems[0]?.count * product?.price;
-    console.log("totalPrice", totalPriceProductCount);
+    setTotalPrice(matchingCartItems[0]?.count * product?.price);
   }, [cartItems]);
 
   return (
@@ -23,12 +23,15 @@ const CartBasketComponent = ({ productId }) => {
       <div className="flex items-center   leading-8 gap-5 border-b-1 border-color dark:border-gray-600 p-4">
         <img className="rounded-lg h-80 w-24" src={image} alt="" />
         <div>
-          <p className="font-semibold ">{product?.name}</p>
-          <p className="text-gray-600 dark:text-gray-400 text-sm font-semibold">
-            {product?.category.name}
-          </p>
+          <div className="flex items-center justify-between">
+            <p className="font-semibold ">{product?.name}</p>
+            <p className="text-gray-600 pr-6 dark:text-gray-400 text-sm font-semibold">
+              {`${product?.price} $`}
+            </p>
+            <br />
+          </div>
           <div className="flex gap-4 mt-2 items-center">
-            <p className="font-semibold text-lg">11</p>
+            <p className="font-semibold text-lg">{`${totalPrice} $`}</p>
             <div className="flex items-center border-1 border-r-0 border-color rounded">
               <button className="p-2 border-r-1 dark:border-gray-600 border-color text-red-600 ">
                 <AiOutlineMinus onClick={() => removeFromCart(product?.id)} />

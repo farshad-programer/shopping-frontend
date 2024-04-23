@@ -22,7 +22,7 @@ const CartComponent = ({ productId }) => {
 
   return (
     <div className="h-full">
-      <div className="bg-white  text-gray-700 md:72  shadow-md shadow-white rounded-md m-2 font-roboto ">
+      <div className="bg-white  text-gray-700 md:72 xs:w-[170px]  shadow-md shadow-white rounded-md m-2 font-roboto ">
         <img src={image} alt="" className="w-full h-[7rem] object-cover" />
         <div className="md:p-5 p-2 flex flex-col gap-1">
           <div className="flex items-center gap-x-4">

@@ -16,7 +16,6 @@ import CartBasketComponent from "./CartBasketComponent";
 
 const Cartm = () => {
   const cartRef = useRef(null);
-
   useClickOutside(cartRef, () => {
     handleClick("cart");
   });

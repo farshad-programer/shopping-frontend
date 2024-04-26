@@ -1,5 +1,6 @@
 ﻿@import url("./font.css");
 @import url("./Card.css");
+@import url("./Input.css");
 
 * {
   box-sizing: border-box;

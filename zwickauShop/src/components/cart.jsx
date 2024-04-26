@@ -31,10 +31,10 @@ const Cartm = () => {
 
   let content;
   let totalPrice;
-  if (isSuccess) {
-    const cartItemsIds = cartItems.map((item) => item.id);
+  useEffect(() => {
+    if (isSuccess) {
+      const cartItemsIds = cartItems.map((item) => item.id);
 
-    useEffect(() => {
       let totalPrice = 0;
       for (let i = 0; i < cartItems.length; i++) {
         const totalPriceProduct =
@@ -42,12 +42,12 @@ const Cartm = () => {
         totalPrice += totalPriceProduct;
       }
       setTotalPriceShop(totalPrice);
-    }, [cartItems]);
 
-    content = cartItemsIds.map((productId) => (
-      <CartBasketComponent key={productId} productId={productId} />
-    ));
-  }
+      content = cartItemsIds.map((productId) => (
+        <CartBasketComponent key={productId} productId={productId} />
+      ));
+    }
+  }, [cartItems,isSuccess]);
 
   // <CartComponent key={productId} productId={productId} />
   return (

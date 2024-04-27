@@ -7,7 +7,7 @@ import { BsChatLeft } from "react-icons/bs";
 import { RiNotification3Line } from "react-icons/ri";
 import avatar from "../data/avatar.jpg";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import Cartm from "./Cart";
+import Cartm from "./cart";
 
 // import Cart from "./Cart";
 // import Chat from "./Chat";

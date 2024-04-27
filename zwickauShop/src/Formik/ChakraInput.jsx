@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Field } from "formik";
 import ErrorMessages from "./Errors/ErrorMessage";
 import { BsExclamationCircleFill } from "react-icons/bs";
@@ -8,27 +8,37 @@ function ChakraInput(props) {
   const { isLG } = useScreenSize();
   const { label, name, type, ...rest } = props;
   return (
+    // <Field name={name}>
+    //   {({ field, form }) => (
+    //     <FormControl isInvalid={form.errors[name] && form.touched[name]}>
+    //       <FormLabel htmlFor={name}>{label}</FormLabel>
+    //       <Input id={name} {...rest} {...field} />
+    //       <FormErrorMessage>{form.errors[name]}</FormErrorMessage>
+    //     </FormControl>
+    //   )}
+    // </Field>
+
     <Field name={name}>
       {({ field, form }) => (
-        <div className="flex ml-2  mt-16 mb-2 items-center justify-center h-auto w-auto bg-transparent  ">
+        <div className="flex px-4 mt-6 mb-1 items-center  justify-center h-auto w-full bg-transparent relative">
           <div
             className={`${
               isLG && form.touched[name] && form.errors[name]
-                ? "ml-auto mb- w-full"
+                ? "ml-auto  w-full"
                 : " w-full "
             }  relative px-2 `}
           >
-            {form.touched[name] && form.errors[name] ? (
+            {form.values[name] && form.errors[name] && (
               <ErrorMessages
                 message={form.errors[name]}
-                position={isLG ? "right" : ""}
+                position={isLG ? "left" : ""}
                 arrowDir="down"
               />
-            ) : null}
+            )}
 
             <div
               htmlFor=""
-              className={`${isLG ? "w-full" : "  w-full "}  relative  `}
+              className={`${isLG ? "w-auto" : "  w-full "}  relative  `}
             >
               <input
                 {...rest}
@@ -39,11 +49,11 @@ function ChakraInput(props) {
                 required
                 autoComplete="true"
                 className={`${
-                  form.touched[name] && form.errors[name]
+                  form.touched[name] && form.touched[name] && form.errors[name]
                     ? " border-red-700  focus:border-red-700  hover:border-red-700  "
                     : "border-gray-500 focus:border-gray-500 "
-                }   px-4 py-1 text-sm outline-none border-b-2  peer  border-gray-500  
-    duration-700 focus:border-indigo-600 bg-transparent w-full`}
+                }   px- pt-3 text-sm outline-none border-b-2  border-gray-500  
+    duration-700 focus:border-gray-900 bg-transparent w-full`}
               />{" "}
               {form.touched[name] && form.errors[name] ? (
                 <BsExclamationCircleFill className="errorInfo " />
@@ -51,13 +61,13 @@ function ChakraInput(props) {
               <span
                 className={`${
                   form.touched[name] && form.errors[name]
-                    ? "text-red-700 peer-focus:text-red-700:"
-                    : " text-gray-800 peer-focus:text-gray-900"
-                } ${
-                  form.values[name] ? "-translate-y-4" : ""
-                } absolute left-0 top-0 px-1 text-sm  
+                    ? "text-red-700 peer-focus:text-red-700 "
+                    : " text-slate-800 peer-focus:text-slate-900 "
+                }${
+                  form.values[name].length > 0 ? "-translate-y-6" : ""
+                } absolute left-0 top-3 px-1 text-sm  
 tracking-wide   pointer-events-none 
-duration-700 peer-focus:text-sm peer-focus:-translate-y-4  bg-transparent peer-focus:transition-colors  ml-2 peer-valid:text-sm peer-valid:-translate-y-4`}
+duration-700 peer-focus:text-sm peer-focus:-translate-y-7 bg-transparent peer-focus:transition-colors  ml-2 peer-valid:text-sm peer-valid:text-slate-900 peer-valid:-translate-y-7`}
               >
                 {label}
               </span>

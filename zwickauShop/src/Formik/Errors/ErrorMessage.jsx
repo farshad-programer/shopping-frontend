@@ -1,4 +1,4 @@
-const ErrorMessages = ({ message, arrowDir, position }) => {
+const ErrorMessages = ({ message, arrowDir, position }, props) => {
   let arrowStyle = "";
   let locationstyle = "";
   switch (arrowDir) {
@@ -21,21 +21,21 @@ const ErrorMessages = ({ message, arrowDir, position }) => {
 
   switch (position) {
     case "left":
-      locationstyle = "absolute w-full  top-0 right-full mr-2 ";
-      arrowStyle = "left-[100%] -rotate-90 -ml-1 top-4 ";
+      locationstyle = " w-full   bottom-0 right-full mr-2 ";
+      arrowStyle = "left-[100%] -rotate-90 -ml-1 -bottom-4 ";
       break;
     case "right":
-      locationstyle = "absolute w-full top-0 left-full ml-1   ";
-      arrowStyle = "right-[98%]  rotate-90 top-3 -left-4";
+      locationstyle = " w-full  left-full ml-1   ";
+      arrowStyle = "right-[98%]  rotate-90 -bottom-3 -left-4";
       break;
     default:
-      locationstyle = "absolute -top-[75px] w-full left-0";
+      locationstyle = " -top-[25px]  w-full left-0";
       break;
   }
   console.log(locationstyle, position);
   return (
     <div
-      className={`${locationstyle} shadow-lg shadow-red-600/50  rounded-lg text-gray-100 text-sm text-left   lg:w-full   p-3  bg-red-600`}
+      className={`${locationstyle}  shadow-lg shadow-red-600/50 relative bottom-0 rounded-lg w-fit  text-gray-100 text-sm text-left   lg:w-fit px-2  pb-2   bg-red-600`}
     >
       {message}
       <div

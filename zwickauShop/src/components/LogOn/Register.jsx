@@ -16,30 +16,50 @@ const Register = () => {
     country: "",
     phon: "",
   };
+
   const validationSchema = Yup.object({
-    email: Yup.string().required("Required"),
-    description: Yup.string().required("Required"),
+    email: Yup.string().email("Invalid Email").required("Email is required"),
+    password: Yup.string()
+      .required(
+        "Enter a combination of alt least eight numbers, letters and punctuation marks (such as ! and &,@)"
+      )
+      .min(8)
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+        "password must contain uppercase, lowercase, number and  special character"
+      ),
+
+    confirmPassword: Yup.string()
+
+      .oneOf([Yup.ref("password")], "Passwords must match")
+      .required("Confirm Password is required"),
   });
   const onSubmit = (values) => {
     console.log("Form data", values);
     console.log("Saved data", JSON.parse(JSON.stringify(values)));
   };
+  console.log("object,", Formik);
+
   return (
     <div className="bg-transparent   w-full h-full">
       <div className=" w-full mb-10 flex justify-center items-center h-full">
         <div className="bg-[rgba(255,255,255,0.15)]   text-center items-center  backdrop-blur-sm shadow-sm rounded-xl w-full ">
           <div className=" flex flex-col items-center justify-center">
-            <div className="font-Playfair mb-2 text-lg mt-7 font-semibold ">Registration</div>
+            <div className="font-Playfair mb-2 text-lg mt-7 font-semibold ">
+              Registration
+            </div>
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
               onSubmit={onSubmit}
-              validateOnBlur:false
-              validateOnChange:true
+              validateOnChange={true}
+              
+
+              validateOnMount
+              
             >
               {(formik) => (
-                
-                <Form className="w-full h-full flex flex-col justify-center items-start">
+                <Form className="w-full h-full flex flex-col  items-start">
                   <FormikControl
                     control="chakraInput"
                     type="email"
@@ -54,7 +74,7 @@ const Register = () => {
                   />
                   <FormikControl
                     control="chakraInput"
-                    type="confirmPassword"
+                    type="password"
                     label="ConfirmPassword"
                     name="confirmPassword"
                   />
@@ -87,21 +107,20 @@ const Register = () => {
                       name="zip"
                     />
                   </div>
-                 
-                    <FormikControl
-                      control="chakraInput"
-                      type="city"
-                      label="City"
-                      name="city"
-                    />
-                    
-                  
+
                   <FormikControl
-                      control="chakraInput"
-                      type="street"
-                      label="Street and House Number"
-                      name="street"
-                    />
+                    control="chakraInput"
+                    type="city"
+                    label="City"
+                    name="city"
+                  />
+
+                  <FormikControl
+                    control="chakraInput"
+                    type="street"
+                    label="Street and House Number"
+                    name="street"
+                  />
                   <FormikControl
                     control="chakraInput"
                     type="phon"

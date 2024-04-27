@@ -2,10 +2,10 @@ import React from "react";
 import ChakraInput from "./ChakraInput";
 
 function FormikControl(props) {
-  const { control, ...rest } = props;
+  const {control, ...rest } = props;
   switch (control) {
     case "chakraInput":
-      return <ChakraInput {...rest} />;
+      return <ChakraInput {...rest } />;
     default:
       return null;
   }

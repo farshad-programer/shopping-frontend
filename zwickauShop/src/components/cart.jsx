@@ -7,11 +7,10 @@ import Button from "./Button";
 import useClickOutside from "../utilities/useClickOutside";
 import { useRef } from "react";
 import {
-  selectAllProducts,
+ 
   useGetProductsQuery,
 } from "../features/productApiSlice";
 
-import { useSelector } from "react-redux";
 import CartBasketComponent from "./CartBasketComponent";
 
 const Cartm = () => {
@@ -31,10 +30,10 @@ const Cartm = () => {
 
   let content;
   let totalPrice;
-  useEffect(() => {
-    if (isSuccess) {
-      const cartItemsIds = cartItems.map((item) => item.id);
+  if (isSuccess) {
+    const cartItemsIds = cartItems.map((item) => item.id);
 
+    useEffect(() => {
       let totalPrice = 0;
       for (let i = 0; i < cartItems.length; i++) {
         const totalPriceProduct =
@@ -42,12 +41,12 @@ const Cartm = () => {
         totalPrice += totalPriceProduct;
       }
       setTotalPriceShop(totalPrice);
+    }, [cartItems]);
 
-      content = cartItemsIds.map((productId) => (
-        <CartBasketComponent key={productId} productId={productId} />
-      ));
-    }
-  }, [cartItems,isSuccess]);
+    content = cartItemsIds.map((productId) => (
+      <CartBasketComponent key={productId} productId={productId} />
+    ));
+  }
 
   // <CartComponent key={productId} productId={productId} />
   return (
@@ -95,30 +94,3 @@ const Cartm = () => {
 };
 
 export default Cartm;
-{
-  /* <button
-                  onClick={() => removeAllFromCart(product.id)}
-                  className="  rounded-md px-2 py-1 bg-yellow-500/70"
-                >
-                  <BsFillTrash3Fill className="text-white  text-md" />
-                </button> */
-}
-// دو آرایه اولیه
-// if (isSuccess) {
-//   const cartItemsIds = cartItems.map((item) => item.id);
-//   const [totalPriceShop, setTotalPriceShop] = useState(0);
-
-//   useEffect(() => {
-//     let totalPrice = 0;
-//     for (let i = 0; i < cartItems.length; i++) {
-//       const totalPriceProduct =
-//         products.entities[cartItems[i].id].price * cartItems[i].count;
-//       totalPrice += totalPriceProduct;
-//     }
-//     setTotalPriceShop(totalPrice);
-//   }, [cartItems]);
-
-//   content = cartItemsIds.map((productId) => (
-//     <CartBasketComponent key={productId} productId={productId} />
-//   ));
-// }

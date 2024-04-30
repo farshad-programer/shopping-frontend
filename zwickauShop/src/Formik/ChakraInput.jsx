@@ -6,7 +6,7 @@ import useScreenSize from "../components/Hooks/screenSize";
 
 function ChakraInput(props) {
   const { isLG } = useScreenSize();
-  const { label, name, type, ...rest } = props;
+  const { position, label, name, type, ...rest } = props;
   return (
     // <Field name={name}>
     //   {({ field, form }) => (
@@ -20,20 +20,29 @@ function ChakraInput(props) {
 
     <Field name={name}>
       {({ field, form }) => (
-        <div className="flex px-4 mt-6 mb-1 items-center  justify-center h-auto w-full bg-transparent relative">
+        <div className="flex px-4 mt-6 mb-1 items-center  justify-center h-auto w-full bg-transparent ">
           <div
             className={`${
               isLG && form.touched[name] && form.errors[name]
                 ? "ml-auto  w-full"
                 : " w-full "
-            }  relative px-2 `}
+            }   px-2 relative`}
           >
             {form.values[name] && form.errors[name] && (
-              <ErrorMessages
-                message={form.errors[name]}
-                position={isLG ? "left" : ""}
-                arrowDir="down"
-              />
+              <div
+                className={` ${
+                  position === "up" 
+                    ? "relative"
+                    : "lg:absolute w-full"
+                }`}
+              >
+                <ErrorMessages
+
+                  message={form.errors[name]}
+                  position={isLG ? position : ""}
+                  arrowDir="down"
+                />
+              </div>
             )}
 
             <div

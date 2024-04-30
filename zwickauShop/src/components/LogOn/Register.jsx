@@ -41,11 +41,11 @@ const Register = () => {
   console.log("object,", Formik);
 
   return (
-    <div className="bg-transparent   w-full h-full">
+    <div className="bg-transparent   w-[20rem] h-full ">
       <div className=" w-full mb-10 flex justify-center items-center h-full">
         <div className="bg-[rgba(255,255,255,0.15)]   text-center items-center  backdrop-blur-sm shadow-sm rounded-xl w-full ">
-          <div className=" flex flex-col items-center justify-center">
-            <div className="font-Playfair mb-2 text-lg mt-7 font-semibold ">
+          <div className=" flex flex-col items-center justify-center ">
+            <div className="font-Playfair mb-2 text-lg mt-7 font-semibold  ">
               Registration
             </div>
             <Formik
@@ -53,10 +53,7 @@ const Register = () => {
               validationSchema={validationSchema}
               onSubmit={onSubmit}
               validateOnChange={true}
-              
-
               validateOnMount
-              
             >
               {(formik) => (
                 <Form className="w-full h-full flex flex-col  items-start">
@@ -65,18 +62,21 @@ const Register = () => {
                     type="email"
                     label="Email"
                     name="email"
+                    position="up"
                   />
                   <FormikControl
                     control="chakraInput"
                     type="password"
                     label="Password"
                     name="password"
+                    position="right"
                   />
                   <FormikControl
                     control="chakraInput"
                     type="password"
                     label="ConfirmPassword"
                     name="confirmPassword"
+                    position="left"
                   />
 
                   <div className="flex w-full items-center justify-end">
@@ -85,12 +85,14 @@ const Register = () => {
                       type="name"
                       label="Name"
                       name="name"
+                      position="right"
                     />
                     <FormikControl
                       control="chakraInput"
                       type="lName"
                       label="LastName"
                       name="lName"
+                      position="right"
                     />
                   </div>
                   <div className="flex w-full items-center justify-end">
@@ -99,12 +101,14 @@ const Register = () => {
                       type="country"
                       label="Country"
                       name="country"
+                      position="right"
                     />
                     <FormikControl
                       control="chakraInput"
                       type="zip"
                       label="Zip"
                       name="zip"
+                      position="right"
                     />
                   </div>
 
@@ -113,6 +117,7 @@ const Register = () => {
                     type="city"
                     label="City"
                     name="city"
+                    position="right"
                   />
 
                   <FormikControl
@@ -120,12 +125,14 @@ const Register = () => {
                     type="street"
                     label="Street and House Number"
                     name="street"
+                    position="right"
                   />
                   <FormikControl
                     control="chakraInput"
                     type="phon"
                     label="Phon"
                     name="phon"
+                    position="right"
                   />
                   <div className="mb-5"></div>
                 </Form>

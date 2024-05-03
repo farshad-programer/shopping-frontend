@@ -3,10 +3,11 @@ module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   // important:"#root",
   darkMode: "class",
+
   theme: {
     fontFamily: {
       display: ["Open Sans", "sans-serif"],
-      
+
       eng2: ["SourceSansPro-Regular", "SourceSansPro-Regular"],
       eng3: ["DancingScript-Regular", "DancingScript-Regular"],
       eng1: ["GreatVibes", "cursive"],
@@ -15,6 +16,61 @@ module.exports = {
       Roboto: ["Roboto", "sans-serif"],
     },
     extend: {
+      keyframes: {
+        "jello-horizontal": {
+          "0%": {
+            transform: "scale3d(1,1,1)",
+          },
+          "30%": {
+            transform: "scale3d(1.25,.75,1)",
+          },
+          "40%": {
+            transform: "scale3d(.75,1.25,1)",
+          },
+          "50%": {
+            transform: "scale3d(1.15,.85,1)",
+          },
+          "65%": {
+            transform: "scale3d(.95,1.05,1)",
+          },
+          "75%": {
+            transform: "scale3d(1.05,.95,1)",
+          },
+
+          "100%": {
+            transform: "scale3d(1,1,1)",
+          },
+        },
+        "jello-horizontal-y": {
+          "0%": {
+            transform: "scale3d(1,1,1) translateY(40%)",
+          },
+          "30%": {
+            transform: "scale3d(1.25,.75,1) translateY(28%)",
+          },
+          "40%": {
+            transform: "scale3d(.75,1.25,1) translateY(24%)",
+          },
+          "50%": {
+            transform: "scale3d(1.15,.85,1) translateY(20%)",
+          },
+          "65%": {
+            transform: "scale3d(.95,1.05,1) translateY(14%)",
+          },
+          "75%": {
+            transform: "scale3d(1.05,.95,1) translateY(10%)",
+          },
+
+          "100%": {
+            transform: "scale3d(1,1,1) translateY(0)",
+          },
+        },
+      },
+
+      animation: {
+        rolls: "jello-horizontal 0.5s   both",
+        rollsY: "jello-horizontal-y 0.5s   both",
+      },
       fontSize: {
         14: "14px",
       },

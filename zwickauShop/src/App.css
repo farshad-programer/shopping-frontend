@@ -4,6 +4,10 @@ body {
   direction: ltr;
 }
 
+/* .roll {
+  animation: roll-in-right 0.6s ease-out;
+} */
+
 .sidebar {
   box-shadow: rgb(113 122 131 / 11%) 0px 7px 30px 0px;
 }

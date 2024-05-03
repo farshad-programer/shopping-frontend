@@ -6,6 +6,7 @@ import useScreenSize from "../components/Hooks/screenSize";
 
 function ChakraInput(props) {
   const { isLG } = useScreenSize();
+  const [typingField, setTypingField] = useState("");
   const { position, label, name, type, ...rest } = props;
   return (
     // <Field name={name}>
@@ -28,16 +29,13 @@ function ChakraInput(props) {
                 : " w-full "
             }   px-2 relative`}
           >
-            {form.values[name] && form.errors[name] && (
+            {typingField && form.errors[name] && (
               <div
                 className={` ${
-                  position === "up" 
-                    ? "relative"
-                    : "lg:absolute w-full"
+                  position === "up" ? "relative" : "lg:absolute w-full"
                 }`}
               >
                 <ErrorMessages
-
                   message={form.errors[name]}
                   position={isLG ? position : ""}
                   arrowDir="down"
@@ -53,17 +51,23 @@ function ChakraInput(props) {
                 {...rest}
                 {...field}
                 name={name}
+                onBlur={() => {
+                  setTypingField("");
+                  form.setTouched({ ...form.touched, [name]: true });
+                }}
+                onFocus={() => setTypingField(name)}
                 id={name}
                 type={type}
                 required
                 autoComplete="true"
                 className={`${
-                  form.touched[name] && form.touched[name] && form.errors[name]
+                  form.touched[name] && form.errors[name]
                     ? " border-red-700  focus:border-red-700  hover:border-red-700  "
                     : "border-gray-500 focus:border-gray-500 "
                 }   px- pt-3 text-sm outline-none border-b-2  border-gray-500  
     duration-700 focus:border-gray-900 bg-transparent w-full`}
-              />{" "}
+              />
+              {console.log("formmmm", form)}
               {form.touched[name] && form.errors[name] ? (
                 <BsExclamationCircleFill className="errorInfo " />
               ) : null}

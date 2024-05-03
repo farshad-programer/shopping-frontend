@@ -18,6 +18,16 @@ const Register = () => {
   };
 
   const validationSchema = Yup.object({
+    lName: Yup.string()
+      .matches(/^[a-zA-Z\s]*$/, "نام معتبر نیست")
+      .min(2, "نام باید حداقل دو حرف داشته باشد")
+      .max(50, "نام نباید بیشتر از 50 حرف داشته باشد")
+      .required("نام الزامی است"),
+    name: Yup.string()
+      .matches(/^[a-zA-Z\s]*$/, "نام معتبر نیست")
+      .min(2, "نام باید حداقل دو حرف داشته باشد")
+      .max(50, "نام نباید بیشتر از 50 حرف داشته باشد")
+      .required("نام الزامی است"),
     email: Yup.string().email("Invalid Email").required("Email is required"),
     password: Yup.string()
       .required(
@@ -43,7 +53,7 @@ const Register = () => {
   return (
     <div className="bg-transparent   w-[20rem] h-full ">
       <div className=" w-full mb-10 flex justify-center items-center h-full">
-        <div className="bg-[rgba(255,255,255,0.15)]   text-center items-center  backdrop-blur-sm shadow-sm rounded-xl w-full ">
+        <div className="bg-[rgba(255,255,255,0.15)] backdrop-blur-sm shadow-sm  text-center items-center   rounded-xl w-full ">
           <div className=" flex flex-col items-center justify-center ">
             <div className="font-Playfair mb-2 text-lg mt-7 font-semibold  ">
               Registration
@@ -79,7 +89,7 @@ const Register = () => {
                     position="left"
                   />
 
-                  <div className="flex w-full items-center justify-end">
+                  
                     <FormikControl
                       control="chakraInput"
                       type="name"
@@ -92,10 +102,10 @@ const Register = () => {
                       type="lName"
                       label="LastName"
                       name="lName"
-                      position="right"
+                      position="left"
                     />
-                  </div>
-                  <div className="flex w-full items-center justify-end">
+                 
+                 
                     <FormikControl
                       control="chakraInput"
                       type="country"
@@ -108,9 +118,9 @@ const Register = () => {
                       type="zip"
                       label="Zip"
                       name="zip"
-                      position="right"
+                      position="left"
                     />
-                  </div>
+                  
 
                   <FormikControl
                     control="chakraInput"

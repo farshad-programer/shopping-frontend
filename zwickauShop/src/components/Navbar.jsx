@@ -15,12 +15,13 @@ import Cartm from "./cart";
 // import UserProfile from "./UserProfile";
 
 const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
-  <TooltipComponent content={title} position="BottomLeft">
+ 
     <button
       type="button"
       onClick={customFunc}
+      data-tip={title}
       style={{ color }}
-      className="relative text-xl rounded-full p-3 hover:bg-gray-100"
+      className="relative avatar text-xl popup-down  rounded-full p-3 hover:bg-gray-100"
     >
       <span
         style={{ background: dotColor }}
@@ -28,7 +29,7 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
       />
       {icon}
     </button>
-  </TooltipComponent>
+  
 );
 
 const Navbar = () => {
@@ -58,13 +59,14 @@ const Navbar = () => {
   }, [screenSize]);
 
   return (
-    <div className="flex dark:shadow-gray-800 shadow-sm  justify-between p-2 shadow-gray-200 relative ">
+    <div className="flex dark:shadow-gray-800 shadow-sm items-center justify-between m-2 shadow-gray-200 relative ">
       <NavButton
         title="منو"
         customFunc={() => setActiveMenu((prev) => !prev)}
         color={currentColor}
         icon={<AiOutlineMenu />}
       />
+      
       <div className="flex flex-row-reverse">
         <NavButton
           title="سبد خرید"

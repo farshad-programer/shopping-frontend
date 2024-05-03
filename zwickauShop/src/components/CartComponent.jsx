@@ -21,7 +21,10 @@ const CartComponent = ({ productId }) => {
   const isInCart = cartItems?.some((item) => item.id === product.id);
 
   return (
-    <div className="h-full">
+    <div
+      className="h-full cornerpopup before:font-eng1 before:content-[attr(after)]"
+      after={`${product?.rating}%`}
+    >
       <div className="bg-white  text-gray-700 md:72 xs:w-[170px]  shadow-md shadow-white rounded-md m-2 font-roboto ">
         <img src={image} alt="" className="w-full h-[7rem] object-cover" />
         <div className="md:p-5 p-2 flex flex-col gap-1">
@@ -47,19 +50,19 @@ const CartComponent = ({ productId }) => {
               </span>
             </div>
           </div>
-          <span className="md:flex md:items-center ">
-            <div className="flex ">
-              <img src={star} alt="" />
-              <img src={star} alt="" />
-              <img src={star} alt="" />
-              <img src={starHalfFill} alt="" />
-              <img src={starNoFill} alt="" />
-            </div>
-            <span className=" text-sm ml-1 font-eng2 font-semibold text-gray-500">
-              20K Review
-            </span>
+
+          <div className="flex ">
+            <img src={star} alt="" />
+            <img src={star} alt="" />
+            <img src={star} alt="" />
+            <img src={starHalfFill} alt="" />
+            <img src={starNoFill} alt="" />
+          </div>
+          <span className=" text-sm ml-1 font-eng2 font-semibold text-gray-500">
+            20K Review
           </span>
-          <div className={`${isInCart ? "" : "flex gap-1"}`}>
+
+          <div className={`${isInCart ? "" : " flex gap-1"}`}>
             {!isInCart ? (
               <button
                 onClick={() => addToCart(product.id)}

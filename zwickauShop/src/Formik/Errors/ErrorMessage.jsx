@@ -26,7 +26,7 @@ const ErrorMessages = ({ message, arrowDir, position }, props) => {
       break;
     case "right":
       locationstyle = " w-full  left-[97%] ml-1 bottom-[0rem]  ";
-      arrowStyle = "right-[97%]  rotate-90 top-[0.45rem] ";
+      arrowStyle = "right-[96.8%]  rotate-90 top-[0.45rem] ";
       break;
     case "down":
       locationstyle = " w-full  -left-[4%] ml-1 top-[3.5rem]   ";

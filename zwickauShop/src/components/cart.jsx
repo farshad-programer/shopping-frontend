@@ -6,14 +6,14 @@ import { useStateContext } from "../contexts/ContextProvider";
 import Button from "./Button";
 import useClickOutside from "../utilities/useClickOutside";
 import { useRef } from "react";
-import {
- 
-  useGetProductsQuery,
-} from "../features/productApiSlice";
+import { useGetProductsQuery } from "../features/productApiSlice";
 
 import CartBasketComponent from "./CartBasketComponent";
+import useAuth from "./Hooks/useAuth";
 
 const Cartm = () => {
+  const { isAdmin, status, email, roles } = useAuth();
+
   const cartRef = useRef(null);
   useClickOutside(cartRef, () => {
     handleClick("cart");
@@ -30,18 +30,18 @@ const Cartm = () => {
 
   let content;
   let totalPrice;
+  useEffect(() => {
+    console.log("objectlllllll", isAdmin, status, email, roles);
+    let totalPrice = 0;
+    for (let i = 0; i < cartItems.length; i++) {
+      const totalPriceProduct =
+        products.entities[cartItems[i].id].price * cartItems[i].count;
+      totalPrice += totalPriceProduct;
+    }
+    setTotalPriceShop(totalPrice);
+  }, [cartItems, isSuccess]);
   if (isSuccess) {
     const cartItemsIds = cartItems.map((item) => item.id);
-
-    useEffect(() => {
-      let totalPrice = 0;
-      for (let i = 0; i < cartItems.length; i++) {
-        const totalPriceProduct =
-          products.entities[cartItems[i].id].price * cartItems[i].count;
-        totalPrice += totalPriceProduct;
-      }
-      setTotalPriceShop(totalPrice);
-    }, [cartItems]);
 
     content = cartItemsIds.map((productId) => (
       <CartBasketComponent key={productId} productId={productId} />

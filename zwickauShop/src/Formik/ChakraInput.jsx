@@ -67,7 +67,7 @@ function ChakraInput(props) {
                 }   px- pt-3 text-sm outline-none border-b-2  border-gray-500  
     duration-700 focus:border-gray-900 bg-transparent w-full`}
               />
-              {console.log("formmmm", form)}
+              
               {form.touched[name] && form.errors[name] ? (
                 <BsExclamationCircleFill className="errorInfo " />
               ) : null}

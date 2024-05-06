@@ -3,16 +3,16 @@ const ErrorMessages = ({ message, arrowDir, position }, props) => {
   let locationstyle = "";
   switch (arrowDir) {
     case "down":
-      arrowStyle = "  top-7 left-6  ";
+      arrowStyle = "  lg:top-7 -bottom-3 left-6  ";
       break;
     case "up":
-      arrowStyle = "bottom-full left-3  rotate-180 ";
+      arrowStyle = "bottom-full lg:left-3 -bottom-3 rotate-180 ";
       break;
     case "left":
-      arrowStyle = "-left-4  rotate-90 -translate-y-1/2 top-1/2";
+      arrowStyle = "-left-4  rotate-90 -bottom-3 lg:-translate-y-1/2 top-1/2";
       break;
     case "right":
-      arrowStyle = "-right-4  -rotate-90 top-1/2 -translate-y-1/2";
+      arrowStyle = "-right-4  -rotate-90 -bottom-3 lg:top-1/2 -translate-y-1/2";
       break;
     default:
       arrowStyle = "";
@@ -36,7 +36,7 @@ const ErrorMessages = ({ message, arrowDir, position }, props) => {
       locationstyle = " -top-[25px]  w-full left-0";
       break;
   }
-  console.log(locationstyle, position);
+
   return (
     <div
       className={`${locationstyle} ${

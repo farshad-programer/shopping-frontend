@@ -42,21 +42,21 @@ const Navbar = () => {
     currentColor,
   } = useStateContext();
 
-  useEffect(() => {
-    const handleResize = () => setScreenSize(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-    handleResize();
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-  useEffect(() => {
-    if (screenSize <= 900) {
-      setActiveMenu(false);
-    } else {
-      setActiveMenu(true);
-    }
-  }, [screenSize]);
+  // useEffect(() => {
+  //   const handleResize = () => setScreenSize(window.innerWidth);
+  //   window.addEventListener("resize", handleResize);
+  //   handleResize();
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, []);
+  // useEffect(() => {
+  //   if (screenSize <= 900) {
+  //     setActiveMenu(true);
+  //   } else {
+  //     setActiveMenu(false);
+  //   }
+  // }, [screenSize]);
 
   return (
     <div className="flex dark:shadow-gray-800 shadow-sm items-center justify-between m-2 shadow-gray-200 relative ">

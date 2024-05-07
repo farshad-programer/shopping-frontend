@@ -12,7 +12,7 @@ import {
 import { TbCategoryPlus } from "react-icons/tb";
 
 import { useSelector } from "react-redux";
-import CategoryList from "./CategoryList";
+
 
 const SidebarCustomer = () => {
   const { activeMenu, setActiveMenu, screenSize, currentColor } =
@@ -25,9 +25,7 @@ const SidebarCustomer = () => {
     error,
   } = useGetCategorysQuery();
   let category = useSelector((state) => selectAllCategorys(state, categorys));
-  if (isSuccess) {
-    let { ids } = categorys;
-  }
+  
 
   const handleCloseSidebaar = useMemo(
     () => () => {
@@ -107,7 +105,7 @@ const SidebarCustomer = () => {
                     isActive ? activeLink : normalLink
                   }
                 >
-                  <TbCategoryPlus className="text-2xl" />
+                  <TbCategoryPlus className="text-xl" />
                   <span className="text-base ">{link.name}</span>
                 </NavLink>
               ))}
@@ -130,7 +128,7 @@ const SidebarCustomer = () => {
                     }
                   >
                     {link.icon}
-                    <span className="text-base">{link.name}</span>
+                    <span className="text-base font-eng2 ">{link.name}</span>
                   </NavLink>
                 ))}
               </div>

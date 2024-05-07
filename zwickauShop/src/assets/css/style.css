@@ -21,9 +21,9 @@ h4,
 h5,
 h6,
 input,
-textarea {
+/* textarea {
   font-family: IRANSansXFaNum, "Open Sans", sans-serif !important;
-}
+} */
 h1 {
   font-weight: bold;
 }

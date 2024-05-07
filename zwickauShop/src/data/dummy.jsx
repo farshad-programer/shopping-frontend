@@ -15,6 +15,8 @@ import {
   FiStar,
   FiShoppingCart,
 } from "react-icons/fi";
+import { CgLogIn, CgLogOut } from "react-icons/cg";
+import { GrContact } from "react-icons/gr";
 import {
   BsKanban,
   BsBarChart,
@@ -496,6 +498,26 @@ export const employeesGrid = [
   },
 ];
 export const links = [
+  {
+    title: "Contact",
+    links: [
+      {
+        to: "contact",
+        name: "Contact",
+        icon: <IoMdContacts className="text-xl" />,
+      },
+    ],
+  },
+  {
+    title: "Registration",
+    links: [
+      { to: "login", name: "LogIn", icon: <CgLogIn className="text-xl" /> },
+      {to: "logout",
+        name: "LogOut",
+        icon: <CgLogOut className="text-xl" />,
+      },
+    ],
+  },
   {
     title: "Dashboard",
     links: [

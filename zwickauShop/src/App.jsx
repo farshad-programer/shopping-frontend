@@ -8,6 +8,7 @@ import CategoryList from "./components/CategoryList";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ContactPage from "./pages/ContactPage";
+import PostProduct from "./components/PostProduct";
 function App() {
   return (
     <Routes>
@@ -16,6 +17,7 @@ function App() {
         <Route path=":id" element={<ProductSingel />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="contact" element={<ContactPage />} />
+        <Route path="postProduct" element={<PostProduct />} />
         <Route path="register" element={<RegisterPage />} />
         <Route path="category">
           <Route path=":categoryId" element={<CategoryList />} />

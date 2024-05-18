@@ -509,6 +509,16 @@ export const links = [
     ],
   },
   {
+    title: "Product",
+    links: [
+      {
+        to: "postProduct",
+        name: "Post",
+        icon: <IoMdContacts className="text-xl" />,
+      },
+    ],
+  },
+  {
     title: "Registration",
     links: [
       { to: "login", name: "LogIn", icon: <CgLogIn className="text-xl" /> },

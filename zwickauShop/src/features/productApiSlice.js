@@ -35,10 +35,22 @@ export const productsApiSlice = apiSlice.injectEndpoints({
         ...result.ids.map((id) => ({ type: "Product", id })),
       ],
     }),
+    addNewProduct: builder.mutation({
+      query: initialProduct => ({
+          url: '/admin/product',
+          method: 'POST',
+          body: {
+              ...initialProduct,
+          }
+      }),
+      invalidatesTags: [
+          { type: 'Product', id: "LIST" }
+      ]
+  }),
   }),
 });
 
-export const { useGetProductsQuery, useGetProductsByCategoryIdQuery } =
+export const { useGetProductsQuery, useGetProductsByCategoryIdQuery, useAddNewProductMutation } =
   productsApiSlice;
 
 // returns the query result object

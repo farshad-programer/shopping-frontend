@@ -1,6 +1,7 @@
 ﻿@import url("./font.css");
 
 @import url("./Input.css");
+@import url("./range.css");
 
 * {
   box-sizing: border-box;

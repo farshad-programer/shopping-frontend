@@ -24,7 +24,7 @@ const CartBasketComponent = ({ productId }) => {
         <img className="rounded-lg h-80 w-24" src={image} alt="" />
         <div>
           <div className="flex items-center justify-between">
-            <p className="font-semibold ">{product?.name}</p>
+            <p className="font-semibold ">{product?.name[0].value}</p>
             <p className="text-gray-600 pr-6 dark:text-gray-400 text-sm font-semibold">
               {`${product?.price} $`}
             </p>

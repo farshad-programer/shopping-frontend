@@ -1,21 +1,23 @@
-import React from 'react'
-import PostProduct from '../components/PostProduct'
-import ExampleModal from '../components/ExampleModal'
+import React from "react";
+
+import PostProduct from "../components/PostProduct";
 
 const PostProductPage = () => {
   return (
-    <div className="mt-12 ">
+    <div className="m-12 h-full">
       <div className="flex flex-col justify-center items-center">
-        <div className="flex m-10 items-center  justify-center w-full   ">
+        <div className="flex  items-center  justify-center w-full   ">
           <div
-            className={`bg-white dark:bg-secondary-dark-bg flex justify-center items-center p-[2%]  z-10  w-5/6   rounded-2xl`}
+            className={`bg-white dark:bg-secondary-dark-bg flex h-full justify-center items-center   z-10  w-full   rounded-2xl`}
           >
-            <ExampleModal />
+            <div className="h-[100%] w-full flex-col flex items-center justify-center  p-4 relative">
+              <PostProduct />
+            </div>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PostProductPage
+export default PostProductPage;

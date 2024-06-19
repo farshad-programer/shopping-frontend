@@ -9,15 +9,7 @@ function ChakraInput(props) {
   const [typingField, setTypingField] = useState("");
   const { position, label, name, type, ...rest } = props;
   return (
-    // <Field name={name}>
-    //   {({ field, form }) => (
-    //     <FormControl isInvalid={form.errors[name] && form.touched[name]}>
-    //       <FormLabel htmlFor={name}>{label}</FormLabel>
-    //       <Input id={name} {...rest} {...field} />
-    //       <FormErrorMessage>{form.errors[name]}</FormErrorMessage>
-    //     </FormControl>
-    //   )}
-    // </Field>
+  
 
     <Field name={name}>
       {({ field, form }) => (
@@ -67,7 +59,7 @@ function ChakraInput(props) {
                 }   px- pt-3 text-sm outline-none border-b-2  border-gray-500  
     duration-700 focus:border-gray-900 bg-transparent w-full`}
               />
-              
+
               {form.touched[name] && form.errors[name] ? (
                 <BsExclamationCircleFill className="errorInfo " />
               ) : null}

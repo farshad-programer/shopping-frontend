@@ -84,6 +84,10 @@ module.exports = {
       borderWidth: {
         1: "1px",
       },
+      backdropFilter: {
+        none: "none",
+        blur: "blur(20px)",
+      },
       borderColor: {
         color: "rgba(0, 0, 0, 0.1)",
       },

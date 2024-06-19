@@ -8,7 +8,7 @@
     
     
     color: #f4f4f4;
-    text-transform: uppercase;
+   
   }
   
   .btn {
@@ -19,9 +19,9 @@
     
   }
   
-  .btn:hover {
+  /* .btn:hover {
     box-shadow: 1px 1px 25px 10px rgba(146, 148, 248, 0.4);
-  }
+  } */
   
   .btn:before {
     content: "";

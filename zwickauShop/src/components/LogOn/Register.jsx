@@ -64,7 +64,7 @@ const Register = () => {
               {(formik) => (
                 <Form className="w-full h-full flex flex-col  items-start">
                   <FormikControl
-                    control="chakraInput"
+                    control="chakraInputSecond"
                     type="email"
                     label="Email"
                     name="email"

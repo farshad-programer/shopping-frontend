@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { SlPuzzle } from "react-icons/sl";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
@@ -12,9 +12,14 @@ import {
 import { TbCategoryPlus } from "react-icons/tb";
 
 import { useSelector } from "react-redux";
-
+import useClickOutside from "../utilities/useClickOutside";
 
 const SidebarCustomer = () => {
+  const sidebarRef = useRef(null);
+
+  useClickOutside(sidebarRef, () => {
+    setActiveMenu(false);
+  });
   const { activeMenu, setActiveMenu, screenSize, currentColor } =
     useStateContext();
   const {
@@ -25,7 +30,6 @@ const SidebarCustomer = () => {
     error,
   } = useGetCategorysQuery();
   let category = useSelector((state) => selectAllCategorys(state, categorys));
-  
 
   const handleCloseSidebaar = useMemo(
     () => () => {
@@ -42,7 +46,10 @@ const SidebarCustomer = () => {
     "flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-light-gray text-md m-2";
 
   return (
-    <div className="ml-3 h-screen scroll-m-11 overflow-auto   pb-10 ">
+    <div
+      ref={sidebarRef}
+      className="ml-3 h-screen scroll-m-11 overflow-auto   pb-10 "
+    >
       {activeMenu && (
         <>
           <div className="flex justify-between items-center hover:overflow-hidden">

@@ -14,6 +14,8 @@ import { FaMinus } from "react-icons/fa";
 import React from "react";
 
 const CartComponent = ({ productId }) => {
+  
+
   const { addToCart, removeFromCart, cartItems } = useStateContext();
   const product = useSelector((state) => selectProductById(state, productId));
   const navigate = useNavigate();
@@ -26,7 +28,8 @@ const CartComponent = ({ productId }) => {
       after={`${product?.rating}%`}
     >
       <div className="bg-white  text-gray-700 md:72 xs:w-[170px]  shadow-md shadow-white rounded-md m-2 font-roboto ">
-        <img src={image} alt="" className="w-full h-[7rem] object-cover" />
+        {console.log(product)}
+        <img src={product.images[0]} alt="" className="w-full h-[7rem] object-cover" />
         <div className="md:p-5 p-2 flex flex-col gap-1">
           <div className="flex items-center gap-x-4">
             <span className="pl-1 pr-2 py-1.5 rounded-full text-xs -ml-1 font-eng3 font-medium text-gray-900 text-left bg-gray-200">
@@ -37,7 +40,7 @@ const CartComponent = ({ productId }) => {
             className="font-semibold text-sm overflow-ellipsis overflow-hidden whitespace-nowrap"
             title="Best Headphone"
           >
-            {product?.name}
+            {product?.name[0].value}
           </h2>
           <div className="ml-1">
             <span className="text-sm font-bold   ">{product?.price} $ </span>
@@ -96,7 +99,7 @@ const CartComponent = ({ productId }) => {
             )}
           </div>
           <div className="flex items-center justify-between mt-1 space-x-7">
-            <button className="flex-grow flex py-2 justify-center items-center bg-gray-300/60 hover:bg-gray-300/80 transition rounded-md">
+            <button onClick={()=>navigate(`/product/${product.id}`)} className="flex-grow flex py-2 justify-center items-center bg-gray-300/60 hover:bg-gray-300/80 transition rounded-md">
               <BsEyeSlashFill className=" text-xl text-black   border-black opacity-50" />
             </button>
             <button className="flex-grow flex h-full justify-center py-2 items-center bg-gray-300/60 hover:bg-gray-300/80 transition rounded-md">
